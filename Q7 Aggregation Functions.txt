@@ -1,0 +1,22 @@
+Practical No 7
+7.Create a table Employee with attribute Empno, Ename, Job, Salary and Write SQL Query on aggregation Functions avg( ), count( ), min( ), max( ) for suitable database application using SQL statements. 
+
+
+
+create table employee
+(
+	empno int,
+    empname varchar(20),
+    job varchar(20),
+    salary int
+);
+
+insert into employee values(1,"Tejas","A",1000);
+insert into employee values(2,"Sneha","B",2000);
+insert into employee values(3,"Nik","C",3000);
+insert into employee values(4,"Guddi","D",4000);
+
+select sum(salary) from employee;
+select count(*) from employee;
+select min(salary) from employee;
+select max(salary) from employee;

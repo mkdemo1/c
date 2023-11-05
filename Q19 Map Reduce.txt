@@ -1,0 +1,16 @@
+Practical No 19
+19) Implement Map reduces operation with suitable example using MongoDB. 
+
+db.createCollection("Map")
+
+db.Map.insertMany([
+{"Name":"A","Marks":50,"Age":20},
+{"Name":"B","Marks":40,"Age":21},
+{"Name":"C","Marks":70,"Age":18},
+{"Name":"D","Marks":30,"Age":21},
+{"Name":"E","Marks":40,"Age":20}
+])
+
+db.Map.mapReduce(function(){emit(this.Age,this.Marks);},function(key,values){return Array.sum(values)},{out:'result_reduce'})
+
+db.result_reduce.find()

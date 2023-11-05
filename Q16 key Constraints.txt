@@ -1,0 +1,33 @@
+Practical No 16
+16) Demonstrate the Primary key, Unique key, Not Null key and Foreign key constraints using MySQL.
+
+create table customer
+(
+	C_ID int,
+    name varchar(20),
+  	PRIMARY KEY (C_ID)
+);
+
+CREATE TABLE Orders
+(
+	O_ID int NOT NULL,
+	Name varchar(20) NOT NULL unique,
+	C_ID int,
+	PRIMARY KEY (O_ID),
+	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID)
+);
+
+insert into customer values(1,"Tejas");
+insert into customer values(2,"Sneha");
+insert into customer values(3,"Nikita");
+insert into customer values(4,"Guddi");
+
+insert into Orders values(1,"A",3);
+insert into Orders values(2,"D",3);
+insert into Orders values(3,"C",4);
+insert into Orders values(4,"B",2);
+
+select *from customer;
+select *from Orders;
+/*insert into Orders values(5,"F",6);*/
+

@@ -1,0 +1,23 @@
+Practical No 14
+14) Create a view on existing Employee table and perform select, insert, update and delete operation using view. 
+
+
+create table example(id int,name varchar(20));
+
+insert into example values(1,"Tejas");
+insert into example values(2,"Sneha");
+insert into example values(3,"Nik");
+insert into example values(4,"Guddi");
+
+select *from example;
+
+create view vw as select id,name from example;
+
+select *from vw;
+update vw set name="Akash" where id=1;
+select *from vw;
+delete from vw where id=4;
+select *from vw;
+insert into vw values(4,"Guddi");
+select *from vw;
+select *from example;

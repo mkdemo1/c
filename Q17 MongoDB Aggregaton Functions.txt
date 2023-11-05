@@ -1,0 +1,21 @@
+Practical No 17
+17) Design and Develop MongoDB Queries using aggregation function with suitable example using MongoDB.
+
+b.createCollection("products ")
+
+db.products.insertMany( [
+       { item: "card", qty: 15 },
+       { item: "envelope", qty: 20 },
+       { item: "stamps" , qty: 30 }
+    ] );
+	
+db.products.insertOne({item: "card", qty: 40})
+db.products.insertOne({item: "card", qty: 40})
+db.products.insertOne({item: "stamps", qty: 40})
+
+db.products.aggregate([{$group:{_id:"$item",total:{$sum:"$qty"}}}])
+db.products.aggregate([{$group:{_id:"$item",total:{$sum:"$qty"}}}])
+db.products.aggregate([{$group:{_id:"$item",total:{$max:"$qty"}}}])
+db.products.aggregate([{$group:{_id:"$item",total:{$min:"$qty"}}}])
+db.products.aggregate([{$group:{_id:"$item",total:{$first:"$qty"}}}])
+db.products.aggregate([{$group:{_id:"$item",total:{$last:"$qty"}}}])

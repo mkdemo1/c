@@ -1,0 +1,39 @@
+Practicla No 12
+Write a database trigger on Library table. The System should keep track of the records that are being updated or deleted. The old value of updated or deleted records should be added in Library Audit table. 
+
+--------------------------------------------------------------------------
+
+CREATE TABLE library(b_id INT, B_name VARCHAR(20));
+
+INSERT INTO library VALUES (1, "TOC");
+INSERT INTO library VALUES (2, "DBMS");
+INSERT INTO library VALUES (3, "JAVA");
+INSERT INTO library VALUES (4, "PHP");
+
+SELECT * FROM library;
+
+/*drop table library_audit;*/
+CREATE TABLE library_audit(b_id INT, B_name VARCHAR(20));
+DELIMITER $$
+
+CREATE TRIGGER before_update
+BEFORE UPDATE
+ON library FOR EACH ROW
+BEGIN
+	INSERT INTO library_audit VALUES (NEW.b_id, NEW.B_name);
+END;
+$$
+
+CREATE TRIGGER before_delete
+BEFORE DELETE
+ON library FOR EACH ROW
+BEGIN
+	INSERT INTO library_audit VALUES (OLD.b_id, OLD.B_name);
+END;
+$$
+
+DELIMITER ;
+
+UPDATE library SET B_name = "DELD" WHERE b_id = 1;
+DELETE FROM library WHERE b_id = 2;
+SELECT * FROM library_audit;

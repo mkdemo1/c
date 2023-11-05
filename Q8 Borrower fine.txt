@@ -1,0 +1,45 @@
+8. Consider Tables: 
+a) Borrower (Roll_no, Name, DateofIssue, NameofBook, Status) 
+b) Fine(Roll_no,Date,Amt) 
+•	Accept Roll_no and NameofBook from user. 
+•	Check the number of days (from date of issue). 
+•	If days are between 15 to 30 then fine amount will be Rs 5per day. 
+•	If no. of days>30, per day fine will be Rs 50 per day and for days less than 30, Rs. 5 per day. 
+
+-----------------------------------------------------------------------------------------------------------------
+
+create table Borrower(Roll_no int, Name varchar(20), DateofIssue date, NameofBook varchar(20), Status varchar(20));
+
+create table Fine(Roll_no int,Date date,Amt int);
+
+insert into Borrower values(1,"Tejas","2022-08-22","A","I");
+insert into Borrower values(2,"Nik ","2023-01-22","B","I");
+insert into Borrower values(3,"Sneha ","2023-08-15","C","I");
+insert into Borrower values(4,"Vinu","2023-10-02","D","I");
+
+delimiter $
+create procedure F4(roll_new int,book_name varchar(20))
+begin
+declare X int;
+declare continue handler for not found
+select 'NOT FOUND';
+select datediff(curdate(),DateofIssue) into X from Borrower where roll_no=roll_new;
+if (X>15&&X<30)
+then
+insert into Fine values(roll_new,curdate(),(X*5));
+elseif (X>30)
+then
+insert into Fine values(roll_new,curdate(),(X*50));
+else
+insert into Fine values(roll_new,curdate(),0);
+end if;
+update Borrower set status='returned' where roll_no=roll_new;
+end;
+$
+delimiter ;
+
+call F4(1,"A");
+
+select *from Borrower;
+
+select *from Fine;

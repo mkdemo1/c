@@ -1,0 +1,23 @@
+Practical No 3
+3. Write SQL Left Join queries for suitable database application using SQL statements. 
+
+CREATE TABLE s (
+  id int,name varchar(20)
+);
+
+INSERT INTO s VALUES (1,"Tejas");
+INSERT INTO s VALUES (2,"sneha");
+SELECT * FROM s;
+
+
+CREATE TABLE a (
+  id int, marks int
+);
+INSERT INTO a VALUES (1,30);
+INSERT INTO a VALUES (2,40);
+INSERT INTO a VALUES (3,70);
+
+SELECT * FROM a;
+
+select s.id,s.name,a.marks from s left outer join a on s.id=a.id;
+

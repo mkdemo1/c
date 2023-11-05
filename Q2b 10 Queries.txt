@@ -1,0 +1,27 @@
+Practical 2b 
+2.b. Write at least 10 SQL queries on the suitable database application using SQL DML statements. 
+
+
+create table MyTable
+(
+	C_ID int,
+    name varchar(20),
+    PRIMARY KEY (C_ID)
+);
+
+
+insert into MyTable values(1,"Sakshi");
+insert into MyTable values(2,"Sneha");
+insert into MyTable values(3,"Sonal");
+select *from MyTable;
+
+
+update MyTable set name="Akash" where C_ID=1;
+update MyTable set name="Vinu" where C_ID=2;
+update MyTable set name="Viraj" where C_ID=3;
+select *from MyTable;
+
+delete from MyTable where C_ID=1;
+delete from MyTable where C_ID=2;
+delete from MyTable where C_ID=3;
+select *from MyTable;

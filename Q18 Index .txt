@@ -1,0 +1,35 @@
+Practicl No 18
+18) Create an index on existing Employee table and perform all possible operations on index using MySQL. 
+
+CREATE TABLE Employee (
+    id INT  PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) ,
+    department_id INT,
+    hire_date DATE
+);
+
+insert into Employee values(1,"Tejs","kale","teju@123",2,"2022-08-07");
+insert into Employee values(2,"Sneha","Sale","sneha@123",3,"2021-08-07");
+insert into Employee values(3,"Nik","prod","nik@123",3,"2023-08-07");
+
+
+CREATE INDEX emp_index ON Employee (id);
+
+-- Query using the indexed column
+SELECT * FROM Employee WHERE id = 1;
+
+-- Query without using the index
+SELECT * FROM Employee WHERE first_name = 'Nik';
+
+-- Sorting by the indexed column
+SELECT * FROM Employee ORDER BY id;
+
+-- Sorting by a non-indexed column
+SELECT * FROM Employee ORDER BY first_name;
+
+
+ALTER TABLE Employee ADD CONSTRAINT UNIQUE (id);
+
+DROP INDEX emp_index ON Employee;

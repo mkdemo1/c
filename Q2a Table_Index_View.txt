@@ -1,0 +1,56 @@
+Practical No 2a
+2.a. Design and Develop SQL DDL statements which demonstrate the use of SQL objects such as Table, View, Index, Sequence, Synonym, different constraints etc 
+
+
+
+create table example(id int,name varchar(20));
+
+insert into example values(1,"XYZ");
+insert into example values(2,"PQR");
+insert into example values(3,"LMN");
+insert into example values(4,"UVS");
+
+select *from example;
+
+create view vw as select id,name from example;
+
+select *from vw;
+
+create index MyIndex1 on example(id);
+
+CREATE INDEX student_index
+ON StudentMaster (Std_ID, FirstName, LastName, Address, City);
+
+mysql> CALL sys.create_synonym_db('example', 'Student'); //CREATE SYNONYM StudentSynonym FOR db.Student;
+
+create table customer
+(
+	C_ID int,
+    	name varchar(20),
+  	PRIMARY KEY (C_ID)
+);
+
+CREATE TABLE Orders
+(
+	O_ID int NOT NULL,
+	Name varchar(20) NOT NULL unique,
+	C_ID int,
+	PRIMARY KEY (O_ID),
+	FOREIGN KEY (C_ID) REFERENCES Customer(C_ID)
+);
+
+insert into customer values(1,"OM");
+insert into customer values(2,"Sneha");
+insert into customer values(3,"PIYUSH");
+insert into customer values(4,"Guddi");
+
+insert into Orders values(1,"A",3);
+insert into Orders values(2,"D",3);
+insert into Orders values(3,"C",4);
+insert into Orders values(4,"B",2);
+
+select *from customer;
+select *from Orders;
+/*insert into Orders values(5,"F",6);*/
+
+
